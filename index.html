@@ -35,13 +35,17 @@
       <p id="result">Up&Down</p>
       <p class="remainChance">
         <span class="text">남은 기회:</span>
-        <span class="num"></span>
+        <span id="num">5</span>
       </p>
       <div class="inputArea">
         <input type="number" placeholder="1부터 100까지 숫자를 입력하시오" id="inputNum">
         <button id="submit">Go!</button>
+        <button id="answer">정답</button>
       </div>
-      <div id="inputValue"></div>
+      <div class="answerArea">
+        <span>정답:</span>
+        <span id="inputAnswer"></span>
+      </div>
     </div>
     <button id="reset">Reset</button>
   </div>

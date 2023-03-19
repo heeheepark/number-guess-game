@@ -13,7 +13,8 @@ let computerNum = 0;
 let numbers = [];
 let result = document.getElementById("result");
 let num = document.getElementById("inputNum");
-let chance = document.getElementsByClassName("num");
+let chance = document.getElementById("num");
+let answerBtn = document.getElementById("answer");
 
 let playButton = document.getElementById("submit");
 playButton.addEventListener("click", inspect);
@@ -22,122 +23,60 @@ let reset = document.getElementById("reset");
 reset.addEventListener("click", gameReset);
 
 
-function remainchance() {
-  let totalChance = 5;
-  for(let i = 0; i < numbers.length; i++) {
-    totalChance -= i;
-    chance.innerText = totalChance;
-  }
-}
-
-
-function inspect() {
-  if(0 < num.value && num.value < 101) {
-    play();
-  } else {
-    alert("1~100사이의 값을 입력하시오");
-  }
-}
-
-function gameReset() {
-  num.value = null;
-  numbers = [];
-  randomNum();
-}
-
-function play() {
-  let userInputValue = num.value;
-  numbers.push(userInputValue);
-  if(numbers.length < 6) {
-    if(userInputValue < computerNum) {
-      result.innerText = "UP!";
-      num.value = null;
-    } else if (userInputValue > computerNum) {
-      result.innerText = "DOWN!";
-      num.value = null;
-    } else {
-      result.innerText = "정답입니다!"
-      playButton.disabled = true;
-    }
-  } else {
-    alert("횟수를 초과하였습니다.")
-    playButton.disabled = true;
-  }
-  console.log(numbers)
-}
-
-
-
 function randomNum() {
   computerNum = Math.floor(Math.random() * 100) + 1;
   console.log("정답", computerNum);
 }
 randomNum();
 
+function inspect() {
+  if(0 < num.value && num.value < 101) {
+    play();
+  } else {
+    alert("1~100사이의 값을 입력하시오");
+  }  
+}
 
+function play() {
+  let userInputValue = num.value;
+  numbers.push(userInputValue);
+    if(numbers.length < 6) {
+      if(userInputValue < computerNum) {
+        result.innerText = "UP!";
+        num.value = null;
+        remainchance();
+      } else if (userInputValue > computerNum) {
+        result.innerText = "DOWN!";
+        num.value = null;
+        remainchance();
+      } else {
+        result.innerText = "정답입니다!"
+        playButton.disabled = true;
+        remainchance();
+      }
+    } else {
+      alert("횟수를 초과하였습니다.")
+      playButton.disabled = true;
+    }
+  console.log(numbers)
+}
 
-/*
-function saveNum() {
-  let num = document.getElementById("inputNum").value;
-  num = Number(num);
-  console.log(num)
-  numbers.push(num);
-  console.log(typeof num)
-  console.log(num < randomNum);
-  if (num < randomNum) {
-    result.innerText = "UP!";
-  } else if (num > randomNum) {
-    result.innerText = "Down!";
+function remainchance() {
+  let totalChance = 5;
+    totalChance -= numbers.length;
+    console.log(totalChance);
+    chance.innerText = totalChance;
   }
+
+function gameReset() {
+  num.value = null;
+  numbers = [];
+  randomNum();
+  playButton.disabled = false;
 }
-*/
-/*
-if (num < randomNum()) {
-  result.innerText = "UP!";
-} else if (num > randomNum) {
-  result.innerText = "Down!";
-} else if (num == randomNum) {
-  result.innerText = "정답!";
-  btnDisabled();
-}
-*/
 
 function btnDisabled() {
   let target = document.getElementsByClassName("submit");
   target.disabled = true;
   target.onclick = "";
 }
-
-
-
-/*
-console.log(num < randomNum)
-if (num < randomNum) {
-  result.innerText = "up!"
-}  
-*/
-/*
-function textChange() {
-  let result = document.getElementById("result");
-  result.innerText = "up!"
-}
-*/
-
-
-/*
-
-
-/*
-function inputNum(value) {
-  value = document.getElementById("inputNum").value
-  if(value < randomNum()) {
-    return 
-  } else if (value > randomNum()) {
-    return result.textContent = "Down!"
-  } else if (value = randomNum()) {
-    return result.textContent = "That's right!"
-  }
-}
-console.log(inputNum);
-
-*/
