@@ -10,3 +10,56 @@
     font-size: 25px;
   }
 }
+
+@media (max-width: 480px){
+  .contentBox {
+    padding: 25px 10px;
+    margin-bottom: 15px;
+  }
+  .contentBox .subtitle {
+    font-size: 18px;
+    letter-spacing: 0;
+  }
+  .contentBox .title {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  .contentBox .title .bottomSubtitle {
+    font-size: 20px;
+  }
+  .contentBox img {
+    width: 70%;
+    margin-bottom: 10px;
+  }
+  .contentBox .remainChance {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  .inputArea {
+    padding: 0;
+  }
+  #inputNum {
+    width: 60%;
+  }
+	.contentBox button#submit {
+    width: 42px;
+    height: 40px;
+    font-size: 20px;
+  }
+  button#answer {
+    width: 50px;
+    height: 40px;
+    font-size: 15px;
+  }
+  #result {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  button#reset {
+  width: 60px;
+  height: 40px;
+  font-size: 20px;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+}
+}
