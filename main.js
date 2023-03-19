@@ -13,15 +13,27 @@ let computerNum = 0;
 let numbers = [];
 let result = document.getElementById("result");
 let num = document.getElementById("inputNum");
-let chance = document.getElementById("num");
-let answerBtn = document.getElementById("answer");
+let chanceNum = document.getElementById("num");
+let chance = 5;
+let img = document.getElementById("img");
+let gameOver = false;
+let answerArea = document.getElementById("answerArea");
 
 let playButton = document.getElementById("submit");
-playButton.addEventListener("click", inspect);
+playButton.addEventListener("click", play);
 
 let reset = document.getElementById("reset");
 reset.addEventListener("click", gameReset);
 
+let answerBtn = document.getElementById("answer");
+answerBtn.addEventListener("click", function() {
+  answerArea.style.display = "block";
+  answerArea.innerText = `정답: ${computerNum}`;
+})
+
+num.addEventListener("focus", function() {
+  num.value = "";
+})
 
 function randomNum() {
   computerNum = Math.floor(Math.random() * 100) + 1;
@@ -29,50 +41,58 @@ function randomNum() {
 }
 randomNum();
 
-function inspect() {
-  if(0 < num.value && num.value < 101) {
-    play();
-  } else {
-    alert("1~100사이의 값을 입력하시오");
-  }  
-}
-
 function play() {
   let userInputValue = num.value;
+
+  if(num.value < 1 || num.value > 100) {
+    alert("1~100사이의 값을 입력하시오.");
+    return;
+  }  
+  if(numbers.includes(userInputValue)) {
+    alert("이미 입력한 값입니다. 다른 숫자를 입력해주세요.");
+    return;
+  }
+  chance--;
+  chanceNum.innerText = chance;
+  if(userInputValue < computerNum) { //유효성 검사
+    result.innerText = "UP!";
+    result.style.color = "red";
+    img.src = "gif/up.gif";
+  } else if (userInputValue > computerNum) { //유효성 검사
+    result.innerText = "DOWN!";
+    result.style.color = "blue";
+    img.src = "gif/down.gif";
+  } else {
+    result.innerText = "정답입니다!"
+    result.style.color = "#000";
+    gameOver = true;
+    img.src = "gif/answer.gif";
+  }
   numbers.push(userInputValue);
-    if(numbers.length < 6) {
-      if(userInputValue < computerNum) {
-        result.innerText = "UP!";
-        num.value = null;
-        remainchance();
-      } else if (userInputValue > computerNum) {
-        result.innerText = "DOWN!";
-        num.value = null;
-        remainchance();
-      } else {
-        result.innerText = "정답입니다!"
-        playButton.disabled = true;
-        remainchance();
-      }
-    } else {
-      alert("횟수를 초과하였습니다.")
-      playButton.disabled = true;
-    }
+
+  if(chance < 1) {
+    gameOver = true
+    answerBtn.style.display = "block";
+  }
+  if(gameOver == true ) {
+    playButton.disabled = true;
+  }
   console.log(numbers)
 }
 
-function remainchance() {
-  let totalChance = 5;
-    totalChance -= numbers.length;
-    console.log(totalChance);
-    chance.innerText = totalChance;
-  }
-
 function gameReset() {
+  chance = 5;
+  chanceNum.innerText = chance;
   num.value = null;
   numbers = [];
-  randomNum();
   playButton.disabled = false;
+  img.src = "gif/giphy.gif";
+  result.innerText = "Up&Down"
+  gameOver = false;
+  answerArea.style.display = "none";
+  answerBtn.style.display = "none";
+  result.style.color = "#000";
+  randomNum();
 }
 
 function btnDisabled() {

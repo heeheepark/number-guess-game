@@ -1,0 +1,12 @@
+@media (max-width: 767px){
+	.contentBox button#submit {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+  button#answer {
+    width: 60px;
+    height: 60px;
+    font-size: 25px;
+  }
+}
