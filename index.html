@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>숫자 맞추기 게임</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@800&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;700;900&family=Roboto:wght@300;500;700&family=Yeon+Sung&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="contentBox">
+      <p class="subtitle">
+        <span>마시면서 배우는 </span>
+        <span>술게임</span>
+      </p>
+      <h1 class="title">
+        <p>숫자 맞추기 게임</p>
+        <p class="bottomSubtitle">
+          <span>죽음의</span>
+          <span class="text_up">Up</span>
+          <span>&</span>
+          <span class="text_down">Down</span>
+        </p>
+      </h1>
+      
+      <img src="gif/giphy.gif" alt="">
+      <p id="result">Up&Down</p>
+      <p class="remainChance">
+        <span class="text">남은 기회:</span>
+        <span class="num"></span>
+      </p>
+      <div class="inputArea">
+        <input type="number" placeholder="1부터 100까지 숫자를 입력하시오" id="inputNum">
+        <button id="submit">Go!</button>
+      </div>
+      <div id="inputValue"></div>
+    </div>
+    <button id="reset">Reset</button>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
